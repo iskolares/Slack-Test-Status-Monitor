@@ -10,9 +10,6 @@ $input = '{"type": "url_verification","token": "sadasdasdasd","challenge": "1234
 $json = json_decode($input, FALSE);
 $jsontype = $json->type;
 
-echo $jsontype;
-echo $json->challenge;
-
 switch ($jsontype) {
 
   case 'url_verification':
@@ -26,9 +23,8 @@ switch ($jsontype) {
       'challenge' => $challenge,
     );
 
-    $responsejson = json_encode($response);
     header('Content-type: application/json');
-    echo $responsejson;
+    return json_encode($response);
 
 
   break;
