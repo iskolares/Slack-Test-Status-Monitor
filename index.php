@@ -8,7 +8,7 @@ define('CHANNEL', getenv('CHANNEL'));
 
 $input = {"type": "url_verification","token": "sadasdasdasd","challenge": "dasdasdasdasad"};
 $json = json_decode($input, FALSE);
-$type = $json->type;
+$type = $json->{type};
 
 echo $input;
 
