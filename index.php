@@ -65,13 +65,12 @@ switch ($jsontype) {
 
 
         //$username = $json->event->user->real_name_normalized;
-        $username = $resp->profile->profile->real_name_normalized;
-        $status_text = $json->event->user->profile->status_text;
-        $status_emoji = $json->event->user->profile->status_emoji;
+        $username = $userjson->profile->real_name_normalized;
+        $status_text = $userjson->profile->status_text;
+        $status_emoji = $userjson->profile->status_emoji;
 
 
         // Build the message payload
-
         // If their status contains some text
         if (isset($status_text) && strlen($status_text) == 0) {
           $message = [
