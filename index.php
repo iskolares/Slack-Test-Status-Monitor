@@ -9,6 +9,8 @@ $input = $_POST['body'];
 $json = json_decode($input, FALSE);
 $type = $json->type;
 
+echo $TOKEN;
+echo $CHANEL;
 
 switch ($type) {
 
