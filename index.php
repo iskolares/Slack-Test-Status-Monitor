@@ -15,13 +15,8 @@ define('CHANNEL', getenv('CHANNEL'));
 
 //$input = $_POST['body'];
 $input = file_get_contents('php://input');
-var_dump($input); 
 $json = json_decode($input, false);
-var_dump($json); // prints array
-
-
 $jsontype = $json->type;
-var_dump($jsontype);
 
 
 switch ($jsontype) {
@@ -52,6 +47,8 @@ switch ($jsontype) {
 
         // Grab some data about the user;
         $userid = $json->event->user->id;
+
+var_dump($userid);
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         $curl = curl_init($getuserprofile);
