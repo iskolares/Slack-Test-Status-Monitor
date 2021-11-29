@@ -47,8 +47,7 @@ switch ($jsontype) {
         // Grab some data about the user;
         $userid = $json->event->user->id;
 
-        $getuserprofile = "https://slack.com/api/users.profile.get?user=$userid&pretty=1";
-        $curl = curl_init($getuserprofile);
+        $getuserprofile = "https://slack.com/api/users.profile.get?user=" . "$userid" . &pretty=1
         curl_setopt($curl, CURLOPT_URL, $getuserprofile);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -61,7 +60,7 @@ switch ($jsontype) {
         $resp = curl_exec($curl);
         curl_close($curl);
         var_dump($resp);
-        
+
         $userjson = json_decode($resp, false);
 
 
@@ -86,7 +85,6 @@ switch ($jsontype) {
 
         // send the message!
 
-
         $attachments = [
           $message,
         ];
@@ -99,13 +97,11 @@ switch ($jsontype) {
 
 
         postMessage($payload);
-
       break;
 
     }
 
 }
-
 
 
 
