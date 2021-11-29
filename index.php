@@ -11,7 +11,6 @@ $json = json_decode($input, FALSE);
 $jsontype = $json->type;
 
 echo $jsontype;
-echo "<br/>";
 echo $json->challenge;
 
 switch ($jsontype) {
@@ -19,6 +18,7 @@ switch ($jsontype) {
   case 'url_verification':
 
     $challenge = isset($json->challenge) ? $json->challenge : null;
+    echo $challenge;
     $response = array(
       'challenge' => $challenge,
     );
