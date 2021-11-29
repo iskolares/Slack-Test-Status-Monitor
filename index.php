@@ -12,9 +12,9 @@ define('CHANNEL', getenv('CHANNEL'));
 
 
 //JSON was not getting received and parsed
-//$input = $_POST['body'];
 
-$input = file_get_contents('php://input');
+$input = $_POST['body'];
+//$input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
