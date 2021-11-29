@@ -6,7 +6,7 @@ define('CHANNEL', getenv('CHANNEL'));
 // Removed 301 redirect
 // Causing Event Subscription setup to fail 
 // without HHTP POST payload response
-http_response_code(301);
+//http_response_code(301);
 
 // Grab event data from the request
 
