@@ -9,9 +9,8 @@ $input = $_POST['body'];
 $json = json_decode($input, FALSE);
 $type = $json->type;
 
-$token_variable = getenv('TOKEN');
-
-echo $token_variable;
+echo constant("TOKEN");
+echo constant("CHANNEL");
 
 switch ($type) {
 
