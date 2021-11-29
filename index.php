@@ -3,10 +3,13 @@ define('TOKEN', getenv('TOKEN'));
 define('CHANNEL', getenv('CHANNEL'));
 
 
- // Grab event data from the request
-//$input = $_POST['body'];
+// Removed 301 redirect
+// Causing Event Subscription setup to fail 
+// without HHTP POST payload response
+// http_response_code(301);
 
-$input = '{"type": "url_verification","token": "sadasdasdasd","challenge": "1234455123124"}';
+// Grab event data from the request
+$input = $_POST['body'];
 $json = json_decode($input, FALSE);
 $jsontype = $json->type;
 
@@ -15,15 +18,16 @@ switch ($jsontype) {
   case 'url_verification':
 
     $challenge = isset($json->challenge) ? $json->challenge : null;
-    echo $challenge;
 
     // Array to string conversion warning on logs
-    //Changed array definition to json_encode to create expected challenge answer
     $response = array(
       'challenge' => $challenge,
     );
 
     header('Content-type: application/json');
+
+    //Replaced print to return as it was not fulfilling the expected response
+    //Change $response call to json_encode to send through expected payload 
     return json_encode($response);
 
 
