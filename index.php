@@ -15,10 +15,7 @@ define('CHANNEL', getenv('CHANNEL'));
 //$input = $_POST['body'];
 
 $input = file_get_contents('php://input');
-echo $input;
-
-
-$json = json_decode(file_get_contents('php://input'), false);
+$json = json_decode($input, false);
 $jsontype = $json->type;
 
 switch ($jsontype) {
@@ -45,7 +42,7 @@ switch ($jsontype) {
     switch ($json->event->type) {
 
       //update from status_change to user_change
-      case 'status_change':
+      case 'user_change':
 
         // Grab some data about the user;
         $userid = $json->event->user->id;
