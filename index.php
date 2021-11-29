@@ -47,9 +47,7 @@ switch ($jsontype) {
         // Grab some data about the user;
         $userid = $json->event->user->id;
 
-console.log($userid);
-
-        $getuserprofile = "https://slack.com/api/users.profile.get?user=" . "$userid" . "&pretty=1";
+        $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         $curl = curl_init($getuserprofile);
         curl_setopt($curl, CURLOPT_URL, $getuserprofile);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
