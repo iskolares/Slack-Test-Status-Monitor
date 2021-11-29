@@ -4,9 +4,7 @@ define('CHANNEL', getenv('CHANNEL'));
 
 
  // Grab event data from the request
-//$input = $_POST['body'];
-
-$input = '{"type": "url_verification","token": "sadasdasdasd","challenge": "dasdasdasdasad"}';
+$input = $_POST['body'];
 $json = json_decode($input, FALSE);
 $jsontype = $json->type;
 
@@ -19,11 +17,16 @@ switch ($jsontype) {
 
     $challenge = isset($json->challenge) ? $json->challenge : null;
     echo $challenge;
+
+    // Array to string conversion warning on logs
+    //Changed array definition to json_encode to create expected challenge answer
     $response = array(
       'challenge' => $challenge,
     );
+
+    $responsejson = json_encode($response);
     header('Content-type: application/json');
-    print $response;
+    print $responsejson;
 
 
   break;
