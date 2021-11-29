@@ -9,8 +9,6 @@ define('CHANNEL', getenv('CHANNEL'));
 // http_response_code(301);
 
 // Grab event data from the request
-var_dump($_POST);
-
 echo file_get_contents('php://input');
 
 
