@@ -9,6 +9,8 @@ define('CHANNEL', getenv('CHANNEL'));
 // http_response_code(301);
 
 // Grab event data from the request
+var_dump($_POST);
+
 $input = $_POST['body'];
 $json = json_decode($input, FALSE);
 $jsontype = $json->type;
@@ -27,9 +29,8 @@ switch ($jsontype) {
     header('Content-type: application/json');
 
     //Replaced print to return as it was not fulfilling the expected response
-    //Change $response call to json_encode to send through expected payload 
+    //Change $response variable to json_encode($response) to send through expected payload 
     return json_encode($response);
-
 
   break;
 
