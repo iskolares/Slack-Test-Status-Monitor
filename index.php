@@ -18,6 +18,8 @@ $input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
+echo $jsontype;
+
 switch ($jsontype) {
 
   case 'url_verification':
