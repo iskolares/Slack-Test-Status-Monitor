@@ -11,6 +11,9 @@ define('CHANNEL', getenv('CHANNEL'));
 // Grab event data from the request
 var_dump($_POST);
 
+echo file_get_contents('php://input');
+
+
 $input = $_POST['body'];
 $json = json_decode($input, FALSE);
 $jsontype = $json->type;
