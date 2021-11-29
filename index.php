@@ -9,10 +9,7 @@ $json = json_decode($input, FALSE);
 $type = $json->type;
 
 echo $input;
-echo "<br/>";
-echo $json;
-echo "<br/>";
-echo $type;
+
 
 switch ($type) {
 
