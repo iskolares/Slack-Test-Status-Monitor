@@ -4,7 +4,14 @@ define('CHANNEL', getenv('CHANNEL'));
 
 
  // Grab event data from the request
-$input = $_POST['body'];
+//$input = $_POST['body'];
+
+$input = { 
+   "type": "url_verification",
+   "token": "",
+   "challenge": ""
+};
+
 $json = json_decode($input, FALSE);
 $type = $json->type;
 
