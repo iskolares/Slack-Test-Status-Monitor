@@ -15,38 +15,11 @@ define('CHANNEL', getenv('CHANNEL'));
 
 //$input = $_POST['body'];
 $input = file_get_contents('php://input');
-var_dump($input); 
 $json = json_decode($input, true);
-var_dump($json); // prints array
-
 
 $jsontype = $json->type;
 
-switch (json_last_error()) {
-  case JSON_ERROR_NONE:
-    echo "No errors";
-    break;
-  case JSON_ERROR_DEPTH:
-    echo "Maximum stack depth exceeded";
-    break;
-  case JSON_ERROR_STATE_MISMATCH:
-    echo "Invalid or malformed JSON";
-    break;
-  case JSON_ERROR_CTRL_CHAR:
-    echo "Control character error";
-    break;
-  case JSON_ERROR_SYNTAX:
-    echo "Syntax error";
-    break;
-  case JSON_ERROR_UTF8:
-    echo "Malformed UTF-8 characters";
-    break;
-  default:
-    echo "Unknown error";
-    break;
-}
-
-echo $jsontype;
+var_dump($jsontype); 
 
 
 switch ($jsontype) {
