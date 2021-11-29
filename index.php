@@ -2,17 +2,18 @@
 define('TOKEN', getenv('TOKEN'));
 define('CHANNEL', getenv('CHANNEL'));
 
-//removed
+
  // Grab event data from the request
 $input = $_POST['body'];
 $json = json_decode($input, FALSE);
 $type = $json->type;
 
 echo $input;
-echo "<br/>"
+echo "<br/>";
 echo $json;
-echo "<br/>"
+echo "<br/>";
 echo $type;
+
 switch ($type) {
 
   case 'url_verification':
@@ -110,8 +111,3 @@ function postMessage($payload) {
     }
  }
 
-
-
-
-
-  
