@@ -14,8 +14,8 @@ define('CHANNEL', getenv('CHANNEL'));
 //JSON was not getting received and parsed
 //$input = $_POST['body'];
 
-$data = file_get_contents('php://input');
-echo $data;
+$input = file_get_contents('php://input');
+echo $input;
 
 
 $json = json_decode(file_get_contents('php://input'), false);
