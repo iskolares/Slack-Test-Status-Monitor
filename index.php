@@ -8,12 +8,12 @@ define('CHANNEL', getenv('CHANNEL'));
 
 $input = '{"type": "url_verification","token": "sadasdasdasd","challenge": "dasdasdasdasad"}';
 $json = json_decode($input, FALSE);
-$type = $json->{type};
+$jsontype = $json->{type};
 
 echo $input;
 
 
-switch ($type) {
+switch ($jsontype) {
 
   case 'url_verification':
 
