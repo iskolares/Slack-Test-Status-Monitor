@@ -6,15 +6,13 @@ define('CHANNEL', getenv('CHANNEL'));
 // Removed 301 redirect
 // Causing Event Subscription setup to fail 
 // without HHTP POST payload response
-// http_response_code(301);
+http_response_code(301);
 
 // Grab event data from the request
-//echo file_get_contents('php://input');
-
 
 $input = $_POST['body'];
 $json = json_decode($input, FALSE);
-$jsontype = $json->type;;;
+$jsontype = $json->type;
 
 switch ($jsontype) {
 
