@@ -47,9 +47,9 @@ switch ($jsontype) {
         // Grab some data about the user;
         $userid = $json->event->user->id;
 
-        $url = "https://slack.com/api/users.profile.get?user=$id&pretty=1";
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_URL, $url);
+        $getuserprofile = "https://slack.com/api/users.profile.get?user=$userid&pretty=1";
+        $curl = curl_init($getuserprofile);
+        curl_setopt($curl, CURLOPT_URL, $getuserprofile);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         $headers = array(
@@ -57,15 +57,15 @@ switch ($jsontype) {
            "Authorization: Bearer TOKEN",
         );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        //for debug only!
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
+  
         $resp = curl_exec($curl);
         curl_close($curl);
-        var_dump($resp);
 
-        $username = $json->event->user->real_name_normalized;
+        $userjson = json_decode($resp, false);
+
+
+        //$username = $json->event->user->real_name_normalized;
+        $username = $resp->profile->profile->real_name_normalized;
         $status_text = $json->event->user->profile->status_text;
         $status_emoji = $json->event->user->profile->status_emoji;
 
