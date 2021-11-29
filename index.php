@@ -10,8 +10,9 @@ $input = '{"type": "url_verification","token": "sadasdasdasd","challenge": "dasd
 $json = json_decode($input, FALSE);
 $jsontype = $json->type;
 
-echo $input;
-
+echo $jsontype;
+echo "<br/>";
+echo $json->challenge;
 
 switch ($jsontype) {
 
