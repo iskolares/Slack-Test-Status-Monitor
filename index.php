@@ -15,11 +15,9 @@ define('CHANNEL', getenv('CHANNEL'));
 
 //$input = $_POST['body'];
 $input = file_get_contents('php://input');
-
-echo $input;
-
-
 $json = json_decode($input, false);
+
+echo $json;
 $jsontype = $json->type;
 
 echo $jsontype;
