@@ -18,6 +18,7 @@ $input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
+var_dump($json);
 
 switch ($jsontype) {
 
@@ -47,8 +48,6 @@ switch ($jsontype) {
 
         // Grab some data about the user;
         $userid = $json->event->user->id;
-
-var_dump($userid);
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         $curl = curl_init($getuserprofile);
