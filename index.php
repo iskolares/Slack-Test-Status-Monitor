@@ -98,7 +98,7 @@ switch ($jsontype) {
             'text' => $username . " cleared their status.",
           ];
         } else {
-          echo "IAM HERE!";
+
           $message = [
             "pretext" => $username . " updated their status:",
             "text" => $status_emoji . " *" . $status_text,
@@ -112,11 +112,9 @@ switch ($jsontype) {
         ];
 
         $payload = [
-          //security reasons, token should not be used as part of query
-          //'token' => TOKEN,
+          'token' => TOKEN,
           'channel' => CHANNEL,
-          //removed comma
-          'attachments' => $attachments
+          'attachments' => $attachments,
         ];
 
 
@@ -142,15 +140,19 @@ function postMessage($payload) {
     echo $callurl;
 
     // Let's build a cURL query.
+    //removed curlurl inside init
   	$ch = curl_init($callurl);
-  	curl_setopt($ch, CURLOPT_USERAGENT, "Slack Technical Exercise");
+  	//curl_setopt($ch, CURLOPT_USERAGENT, "Slack Technical Exercise");
+    //curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
   	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+  	//curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
-    if (array_key_exists("filename", $payload)) {
-      $callurl = $url . $method;
+    //removed if statement as this key isnt part of the postMessage payload, so will not be met 
+    //if (array_key_exists("filename", $payload)) {
+      //$callurl = $url . $method;
 
       // Change CURL headers
+      // Token passed from set global environment
       //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
         $headers = array(
            "Content-Type : application/json; charset=utf-8",
@@ -161,7 +163,7 @@ function postMessage($payload) {
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
       curl_setopt($ch, CURLOPT_POST, 1);
       curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-    }
+    //}
 
     $ch_response = json_decode(curl_exec($ch));
     if ($ch_response->ok == FALSE) {
