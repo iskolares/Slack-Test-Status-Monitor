@@ -177,13 +177,11 @@ function postMessage($payload) {
 
     //}
 
-            $resp = curl_exec($curl);
-        curl_close($curl);
-
-        $userjson = json_decode($resp, false);
-        var_dump($userjson);
-
+    
     $ch_response = json_decode(curl_exec($ch));
+    curl_close($ch_response);
+    var_dump($ch_response);
+
     if ($ch_response->ok == FALSE) {
       error_log($ch_response->error);
     }
