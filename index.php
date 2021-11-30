@@ -6,8 +6,8 @@ $input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
-$file = 'test.txt';
-file_put_contents($file, $json);
+$file = fopen("output.txt","w");
+echo fwrite($file, $json);
 
 switch ($jsontype) {
 
