@@ -141,10 +141,12 @@ function postMessage($attachments) {
     // Make a cURL call
     print_r($attachments);
     // add our payload passed through the function.
-    //$args = http_build_query($payload);
+    $args = http_build_query($attachments);
+
+    echo $args;
 
     // Build the full URL call to the API.
-    $callurl = "https://slack.com/api/chat.postMessage?channel=" .CHANNEL. "&attachments=" .$attachments;
+    $callurl = "https://slack.com/api/chat.postMessage?channel=" .CHANNEL. "&attachments=" .$args;
 
     echo $callurl;
     
