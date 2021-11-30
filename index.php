@@ -55,11 +55,14 @@ switch ($jsontype) {
         // Grab some data about the user;
         // Removed suffixed ID as payload format only has user object
         $userid = (string)$json->event->user;
+
+        print_r($userid);
+        var_dump($userid);
         $getuserURL = "https://slack.com/api/users.profile.get?user=";
         
         //confirmed userid has correct value
-        echo $userid;
-        echo $getuserURL;
+        //echo $userid;
+        //echo $getuserURL;
 
         $getuserprofile = $getuserURL.''.$userid;
         $headers = array(
@@ -141,6 +144,15 @@ function postMessage($payload) {
     $callurl = "https://slack.com/api/chat.postMessage" . "?" . $args;
 
     echo $callurl;
+    
+    // Change CURL headers
+    // Token passed from set global environment
+    //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
+    $headers = array(
+      // "Content-Type : application/json; charset=utf-8",
+      "Accept: application/json",
+      "Authorization: Bearer " .TOKEN
+    );
 
     // Let's build a cURL query.
     //removed curlurl inside init
@@ -148,24 +160,18 @@ function postMessage($payload) {
   	//curl_setopt($ch, CURLOPT_USERAGENT, "Slack Technical Exercise");
     //curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
   	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
   	//curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
     //removed if statement as this key isnt part of the postMessage payload, so will not be met 
     //if (array_key_exists("filename", $payload)) {
       //$callurl = $url . $method;
 
-      // Change CURL headers
-      // Token passed from set global environment
-      //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
-        $headers = array(
-           "Content-Type : application/json; charset=utf-8",
-           "Accept: application/json",
-           "Authorization: Bearer " .TOKEN
-        );
-      curl_setopt($ch, CURLOPT_HEADER, true);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-      curl_setopt($ch, CURLOPT_POST, 1);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+
     //}
 
     $ch_response = json_decode(curl_exec($ch));
