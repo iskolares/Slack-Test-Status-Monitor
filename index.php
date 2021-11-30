@@ -166,21 +166,22 @@ function postMessage($payload) {
     curl_setopt($ch, CURLOPT_HEADER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+  //  curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
   	//curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
     //removed if statement as this key isnt part of the postMessage payload, so will not be met 
     //if (array_key_exists("filename", $payload)) {
       //$callurl = $url . $method;
 
-
-
     //}
-
     
     $ch_response = json_decode(curl_exec($ch));
-    curl_close($ch_response);
+
+    //closed CURL call
+    curl_close($ch);
     var_dump($ch_response);
+
+
 
     if ($ch_response->ok == FALSE) {
       error_log($ch_response->error);
