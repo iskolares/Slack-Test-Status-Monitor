@@ -61,7 +61,8 @@ switch ($jsontype) {
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         $headers = array(
-           "Content-Type": "application/json; charset=utf-8",
+           "Content-Type : application/json; charset=utf-8",
+           "Accept: application/json",
            "Authorization: Bearer " .TOKEN
         );
 
@@ -151,10 +152,11 @@ function postMessage($payload) {
 
       // Change CURL headers
       //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
-      $headers = array(
-          "Content-Type": "application/json; charset=utf-8",
-          "Authorization: Bearer " .TOKEN
-      );
+        $headers = array(
+           "Content-Type : application/json; charset=utf-8",
+           "Accept: application/json",
+           "Authorization: Bearer " .TOKEN
+        );
       curl_setopt($ch, CURLOPT_HEADER, true);
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
       curl_setopt($ch, CURLOPT_POST, 1);
