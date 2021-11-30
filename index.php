@@ -45,10 +45,11 @@ switch ($jsontype) {
 
 echo("it's in here!");
 
-    switch ($json->event->type) {
-
 $eventtype = $json->event->type;
 echo($eventtype);
+
+    switch ($json->event->type) {
+
 
       //update from status_change to user_change
       case 'user_change':
