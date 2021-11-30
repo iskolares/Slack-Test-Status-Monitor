@@ -44,12 +44,10 @@ switch ($jsontype) {
 
 //echo("it's in here!");
 //Tested eventtype return value
-//$eventtype = $json->event->type;
-//echo($eventtype);
+$eventtype = $json->event->type;
+echo($eventtype);
 
     switch ($json->event->type) {
-
-$eventtype = $json->event->type;
 
       //update from status_change to user_change
       case 'user_change':
@@ -61,7 +59,7 @@ $eventtype = $json->event->type;
         //confirmed userid has correct value
         //echo $userid;
 
-        $getuserprofile = "https://slack.com/api/users.profile.get?user={$userid}";
+        $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         $headers = array(
            "Content-Type : application/json; charset=utf-8",
            "Accept: application/json",
