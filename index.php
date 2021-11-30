@@ -111,7 +111,8 @@ switch ($jsontype) {
         ];
 
         $payload = [
-          'token' => TOKEN,
+          //security reasons, token should not be used as part of query
+          //'token' => TOKEN,
           'channel' => CHANNEL,
           'attachments' => $attachments,
         ];
@@ -128,8 +129,6 @@ switch ($jsontype) {
 
 function postMessage($payload) {
 
-  print_r($payload);
-
     // Make a cURL call
 
     // add our payload passed through the function.
@@ -137,6 +136,8 @@ function postMessage($payload) {
 
     // Build the full URL call to the API.
     $callurl = "https://slack.com/api/chat.postMessage" . "?" . $args;
+
+    echo $callurl;
 
     // Let's build a cURL query.
   	$ch = curl_init($callurl);
