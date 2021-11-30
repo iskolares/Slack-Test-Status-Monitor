@@ -61,12 +61,11 @@ switch ($jsontype) {
         //var_dump($userid);
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
-        
-        echo TOKEN;
         $headers = array(
            "Accept: application/json",
            "Authorization: Bearer " .TOKEN
         );
+
         //confirmed getuserprofile has correct value
         //var_dump($getuserprofile);
 
@@ -75,20 +74,19 @@ switch ($jsontype) {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
   
-          print_r($headers);
-        
         $resp = curl_exec($curl);
         curl_close($curl);
 
-        var_dump($resp);
-
         $userjson = json_decode($resp, false);
-
+        var_dump($userjson);
 
         //$username = $json->event->user->real_name_normalized;
         $username = $userjson->profile->real_name_normalized;
+        echo $username;
         $status_text = $userjson->profile->status_text;
+        echo $status_text;
         $status_emoji = $userjson->profile->status_emoji;
+        echo $status_emoji;
 
 
         // Build the message payload
