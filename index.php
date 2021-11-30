@@ -64,8 +64,8 @@ switch ($jsontype) {
         
         //confirmed getuserprofile has correct value
         //var_dump($getuserprofile);
-        
-        $curl = curl_init($getuserprofile);
+
+        $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $getuserprofile);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -77,6 +77,7 @@ switch ($jsontype) {
   
         $resp = curl_exec($curl);
         curl_close($curl);
+        
         var_dump($resp);
 
         $userjson = json_decode($resp, false);
