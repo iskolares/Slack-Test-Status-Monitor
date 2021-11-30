@@ -30,45 +30,28 @@ switch ($jsontype) {
 
       case 'user_change':
 
-        // Grab some data about the user;
+         // Grab some data about the user;
         $userid = $json->event->user->id;
+        $username = $json->event->user->profile->real_name_normalized;
+        $status_text = $json->event->user->profile->status_text;
+        $status_emoji = $json->event->user->profile->status_emoji;
 
-        $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
-
-        $headers = array(
-           "Accept: application/json",
-           "Authorization: Bearer " .TOKEN
-        );
-
-
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $getuserprofile);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-  
-        $resp = curl_exec($curl);
-        curl_close($curl);
-
-        $userjson = json_decode($resp, false);
-        $username = $userjson->profile->real_name_normalized;
-        $status_text = $userjson->profile->status_text;
-        $status_emoji = $userjson->profile->status_emoji;
 
         // Build the message payload
+
         // If their status contains some text
         if (isset($status_text) && strlen($status_text) == 0) {
-
           $message = [
-            'text' => $username . " cleared their status."
+            'text' => $username . " cleared their status.",
           ];
-        } 
-        else {
-
+        } else {
           $message = [
             "pretext" => $username . " updated their status:",
-            "text" => $status_emoji . " *" . $status_text
+            "text" => $status_emoji . " *" . $status_text,
           ];
         }
+
+        // send the message!
 
         $attachments = [
           $message,
