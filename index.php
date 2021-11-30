@@ -33,6 +33,9 @@ switch ($jsontype) {
         // Grab some data about the user;
         $userid = $json->event->user;
 
+        echo '<pre>'; 
+        print_r($userid);
+
         $getuserURL = "https://slack.com/api/users.profile.get?user=";
         $getuserprofile = $getuserURL.''.$userid;
         $headers = array(
