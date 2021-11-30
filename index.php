@@ -114,7 +114,8 @@ switch ($jsontype) {
           //security reasons, token should not be used as part of query
           //'token' => TOKEN,
           'channel' => CHANNEL,
-          'attachments' => $attachments,
+          //removed comma
+          'attachments' => $attachments
         ];
 
 
