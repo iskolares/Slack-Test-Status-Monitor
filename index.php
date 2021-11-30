@@ -43,21 +43,21 @@ switch ($jsontype) {
 
   case 'event_callback':
 
-echo("it's in here!");
-
-$eventtype = $json->event->type;
-echo($eventtype);
+//echo("it's in here!");
+//Tested eventtype return value
+//$eventtype = $json->event->type;
+//echo($eventtype);
 
     switch ($json->event->type) {
-
 
       //update from status_change to user_change
       case 'user_change':
 
         // Grab some data about the user;
-        $userid = $json->event->user->id;
+        // Removed suffixed ID as payload format only has user object
+        $userid = $json->event->user;
 
-        $var_dump(userid);
+        var_dump($userid);
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         var_dump($getuserprofile);
