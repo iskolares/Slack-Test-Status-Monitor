@@ -101,16 +101,16 @@ switch ($jsontype) {
         // Build the message payload
         // If their status contains some text
         if (isset($status_text) && strlen($status_text) == 0) {
-          $message = {
+          $message = [
             'text' => $username . " cleared their status."
-          };
+          ];
         } 
         else {
 
-          $message = {
+          $message = [
             "pretext" => $username . " updated their status:",
             "text" => $status_emoji . " *" . $status_text
-          };
+          ];
         }
 
         // send the message!
