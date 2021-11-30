@@ -143,7 +143,7 @@ function postMessage($attachments) {
     // add our payload passed through the function.
     //$args = http_build_query($attachments);
 
-    $args=json_encode($attachments); 
+    $args=urlencode(json_encode($attachments)); 
 
     echo $args;
 
