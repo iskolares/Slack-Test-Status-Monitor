@@ -115,9 +115,9 @@ switch ($jsontype) {
 
         // send the message!
 
-       // $attachments = [
-        //  $message,
-       // ];
+        $attachments = [
+          $message,
+        ];
 
        // $payload = [
           //removed token. Will be passed via CURL auth headers
@@ -127,7 +127,7 @@ switch ($jsontype) {
         //];
 
 
-        postMessage($message);
+        postMessage($attachments);
       break;
 
     }
@@ -136,15 +136,15 @@ switch ($jsontype) {
 
 
 
-function postMessage($message) {
+function postMessage($attachments) {
 
     // Make a cURL call
-    print_r($message);
+    print_r($attachments);
     // add our payload passed through the function.
     //$args = http_build_query($payload);
 
     // Build the full URL call to the API.
-    $callurl = "https://slack.com/api/chat.postMessage?channel=" .CHANNEL. "&attachments=" .$message;
+    $callurl = "https://slack.com/api/chat.postMessage?channel=" .CHANNEL. "&attachments=" .$attachments;
 
     echo $callurl;
     
