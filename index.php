@@ -44,8 +44,8 @@ switch ($jsontype) {
 
 //echo("it's in here!");
 //Tested eventtype return value
-$eventtype = $json->event->type;
-echo($eventtype);
+//$eventtype = $json->event->type;
+//echo($eventtype);
 
     switch ($json->event->type) {
 
@@ -54,7 +54,7 @@ echo($eventtype);
 
         // Grab some data about the user;
         // Removed suffixed ID as payload format only has user object
-        $userid = $json->event->user;
+        $userid = (string)$json->event->user;
 
         //confirmed userid has correct value
         //echo $userid;
