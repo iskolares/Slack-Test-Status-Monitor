@@ -57,7 +57,7 @@ switch ($jsontype) {
         $userid = (string)$json->event->user;
 
         //confirmed userid has correct value
-        //echo $userid;
+        echo $userid;
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         $headers = array(
