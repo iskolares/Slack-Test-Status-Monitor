@@ -7,7 +7,7 @@ $json = json_decode($input, false);
 $jsontype = $json->type;
 
 
-file_put_contents("php://stderr", $json);
+file_put_contents("php://stderr", print_r($json, TRUE));
 
 switch ($jsontype) {
 
