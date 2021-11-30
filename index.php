@@ -6,8 +6,12 @@ $input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
+$file = 'test.txt';
+file_put_contents($file, $json);
+
 switch ($jsontype) {
 
+  //APP EVENT VALIDATION
   case 'url_verification':
 
     $challenge = isset($json->challenge) ? $json->challenge : null;
@@ -22,6 +26,7 @@ switch ($jsontype) {
 
   break;
 
+  //EVENT CALLBACK from Event API
   case 'event_callback':
 
     switch ($json->event->type) {
@@ -80,6 +85,7 @@ switch ($jsontype) {
 }
 
 
+//HANDLES POSTING THE STATUS CHANGE INTO CHANNEL
 function postMessage($attachments) {
 
     // Make a cURL call
