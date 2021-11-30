@@ -18,9 +18,9 @@ $input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
-var_dump($input);
-var_dump($json);
-var_dump($jsontype);
+//var_dump($input);
+//var_dump($json);
+//var_dump($jsontype);
 
 switch ($jsontype) {
 
@@ -43,6 +43,7 @@ switch ($jsontype) {
 
   case 'event_callback':
 
+echo("it's in here!");
     switch ($json->event->type) {
 
       //update from status_change to user_change
@@ -51,7 +52,10 @@ switch ($jsontype) {
         // Grab some data about the user;
         $userid = $json->event->user->id;
 
+        $var_dump(userid);
+        
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
+        var_dump($getuserprofile);
         $curl = curl_init($getuserprofile);
         curl_setopt($curl, CURLOPT_URL, $getuserprofile);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
