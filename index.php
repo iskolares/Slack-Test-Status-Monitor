@@ -57,10 +57,14 @@ switch ($jsontype) {
         // Removed suffixed ID as payload format only has user object
         $userid = $json->event->user;
 
-        var_dump($userid);
+        //confirmed userid has correct value
+        //var_dump($userid);
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
-        var_dump($getuserprofile);
+        
+        //confirmed getuserprofile has correct value
+        //var_dump($getuserprofile);
+        
         $curl = curl_init($getuserprofile);
         curl_setopt($curl, CURLOPT_URL, $getuserprofile);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -76,6 +80,7 @@ switch ($jsontype) {
         var_dump($resp);
 
         $userjson = json_decode($resp, false);
+       var_dump($userjson);
 
 
         //$username = $json->event->user->real_name_normalized;
