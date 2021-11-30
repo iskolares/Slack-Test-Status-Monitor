@@ -61,7 +61,7 @@ switch ($jsontype) {
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         $headers = array(
-           "Accept: application/json",
+           "Content-Type": "application/json; charset=utf-8",
            "Authorization: Bearer " .TOKEN
         );
 
@@ -128,6 +128,8 @@ switch ($jsontype) {
 
 function postMessage($payload) {
 
+  print_r($payload);
+
     // Make a cURL call
 
     // add our payload passed through the function.
@@ -148,8 +150,8 @@ function postMessage($payload) {
       // Change CURL headers
       //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
       $headers = array(
-        "Accept: application/json",
-        "Authorization: Bearer " .TOKEN
+          "Content-Type": "application/json; charset=utf-8",
+          "Authorization: Bearer " .TOKEN
       );
       curl_setopt($ch, CURLOPT_HEADER, true);
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
