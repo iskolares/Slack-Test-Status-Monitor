@@ -116,7 +116,7 @@ switch ($jsontype) {
 
         //changed from array to object
         $attachments = {
-          $message,
+          $message
         };
 
         $payload = [
