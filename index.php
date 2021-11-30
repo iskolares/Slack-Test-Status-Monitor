@@ -49,7 +49,8 @@ switch ($jsontype) {
 
     switch ($json->event->type) {
 
-      var_dump($json->event->type);
+$eventtype = $json->event->type;
+
       //update from status_change to user_change
       case 'user_change':
 
