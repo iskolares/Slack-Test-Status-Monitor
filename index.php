@@ -62,9 +62,10 @@ switch ($jsontype) {
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         
+        echo TOKEN;
         $headers = array(
            "Accept: application/json",
-           "Authorization: Bearer ".$TOKEN,
+           "Authorization: Bearer " .TOKEN
         );
         //confirmed getuserprofile has correct value
         //var_dump($getuserprofile);
