@@ -57,7 +57,7 @@ switch ($jsontype) {
         $userid = $json->event->user;
 
         print_r($userid);
-        var_dump($userid);
+        //var_dump($userid);
         $getuserURL = "https://slack.com/api/users.profile.get?user=";
         
         //confirmed userid has correct value
@@ -72,7 +72,7 @@ switch ($jsontype) {
         );
 
         //confirmed getuserprofile has correct value
-        echo $getuserprofile;
+        //echo $getuserprofile;
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $getuserprofile);
@@ -83,7 +83,7 @@ switch ($jsontype) {
         curl_close($curl);
 
         $userjson = json_decode($resp, false);
-        //var_dump($userjson);
+        var_dump($userjson);
 
         //$username = $json->event->user->real_name_normalized;
         $username = $userjson->profile->real_name_normalized;
