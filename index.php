@@ -144,9 +144,9 @@ function postMessage($message) {
     //$args = http_build_query($payload);
 
     // Build the full URL call to the API.
-    $callurl = "https://slack.com/api/chat.postMessage" . "?" . $args;
+    $callurl = "https://slack.com/api/chat.postMessage?channel=" .CHANNEL. "&attachments=" .$message;
 
-    //echo $callurl;
+    echo $callurl;
     
     // Change CURL headers
     // Token passed from set global environment
