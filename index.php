@@ -78,15 +78,15 @@ switch ($jsontype) {
         curl_close($curl);
 
         $userjson = json_decode($resp, false);
-        var_dump($userjson);
+        //var_dump($userjson);
 
         //$username = $json->event->user->real_name_normalized;
         $username = $userjson->profile->real_name_normalized;
-        echo $username;
+        var_dump($username);
         $status_text = $userjson->profile->status_text;
-        echo $status_text;
+        var_dump($status_text);
         $status_emoji = $userjson->profile->status_emoji;
-        echo $status_emoji;
+        echo($status_emoji);
 
 
         // Build the message payload
