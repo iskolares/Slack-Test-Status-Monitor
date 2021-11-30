@@ -6,9 +6,6 @@ $input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
-
-file_put_contents("php://stderr", print_r($json, TRUE));
-
 switch ($jsontype) {
 
   //APP EVENT VALIDATION
@@ -34,13 +31,10 @@ switch ($jsontype) {
       case 'user_change':
 
         // Grab some data about the user;
-        $userid = $json->event->user;
+        $userid = $json->event->user->id;
 
-        echo '<pre>'; 
-        print_r($userid);
+        $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
 
-        $getuserURL = "https://slack.com/api/users.profile.get?user=";
-        $getuserprofile = $getuserURL.''.$userid;
         $headers = array(
            "Accept: application/json",
            "Authorization: Bearer " .TOKEN
