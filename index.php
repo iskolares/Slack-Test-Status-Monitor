@@ -104,12 +104,13 @@ switch ($jsontype) {
           $message = [{
             'text' => $username . " cleared their status."
           }];
-        } else {
+        } 
+        else {
 
           $message = [{
             "pretext" => $username . " updated their status:",
             "text" => $status_emoji . " *" . $status_text
-          }]};
+          }];
         }
 
         // send the message!
