@@ -57,9 +57,9 @@ switch ($jsontype) {
         $userid = $json->event->user;
 
         //confirmed userid has correct value
-        echo $userid->id;
+        //echo $userid;
 
-        $getuserprofile="https://slack.com/api/users.profile.get?user=".$userid;
+        $getuserprofile = "https://slack.com/api/users.profile.get?user=" . $userid;
         $headers = array(
            "Content-Type : application/json; charset=utf-8",
            "Accept: application/json",
@@ -112,7 +112,8 @@ switch ($jsontype) {
         ];
 
         $payload = [
-          'token' => TOKEN,
+          //removed token. will be passed via CURL
+          //'token' => TOKEN,
           'channel' => CHANNEL,
           'attachments' => $attachments,
         ];
