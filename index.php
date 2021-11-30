@@ -66,7 +66,6 @@ switch ($jsontype) {
 
         $getuserprofile = $getuserURL.''.$userid;
         $headers = array(
-           "Content-Type : application/json; charset=utf-8",
            "Accept: application/json",
            "Authorization: Bearer " .TOKEN
         );
@@ -151,7 +150,6 @@ function postMessage($payload) {
     // Token passed from set global environment
     //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
     $headers = array(
-      "Content-Type : application/json; charset=utf-8",
       "Accept: application/json",
       "Authorization: Bearer " .TOKEN
     );
