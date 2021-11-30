@@ -5,13 +5,13 @@ define('CHANNEL', getenv('CHANNEL'));
 
 // Removed 301 redirect
 // Causing Event Subscription setup to fail 
-// without HHTP POST payload response
+// without HTTP 200 POST payload response
 // http_response_code(301);
 
 // Grab event data from the request
 
 
-//Replaced $_POST['body'] as JSON was not getting received and parsed
+//Replaced $_POST['body'] with file_get_contents as JSON was not getting received and parsed
 //$input = $_POST['body'];
 $input = file_get_contents('php://input');
 $json = json_decode($input, false);
@@ -34,7 +34,7 @@ switch ($jsontype) {
 
     header('Content-type: application/json');
 
-    //Replaced print to return as it was not fulfilling the expected response
+    //Replaced to 'return' as 'print;'' was not fulfilling the expected response for challenge
     //Change $response variable to json_encode($response) to send through expected payload 
     return json_encode($response);
 
@@ -111,6 +111,8 @@ switch ($jsontype) {
           ];
         }
 
+print_r($message);
+
         // send the message!
 
         $attachments = [
@@ -118,7 +120,7 @@ switch ($jsontype) {
         ];
 
         $payload = [
-          //removed token. will be passed via CURL
+          //removed token. Will be passed via CURL auth headers
           //'token' => TOKEN,
           'channel' => CHANNEL,
           'attachments' => $attachments,
@@ -175,9 +177,9 @@ function postMessage($payload) {
     
     $ch_response = json_decode(curl_exec($ch));
 
-    if ($ch_response->ok == FALSE) {
-      error_log($ch_response->error);
-    }
+   // if ($ch_response->ok == FALSE) {
+    //  error_log($ch_response->error);
+   // }
 
     //closed CURL call
     curl_close($ch);
