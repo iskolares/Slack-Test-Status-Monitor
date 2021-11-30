@@ -54,7 +54,7 @@ switch ($jsontype) {
 
         // Grab some data about the user;
         // Removed suffixed ID as payload format only has user object
-        $userid = (string)$json->event->user;
+        $userid = $json->event->user;
 
         print_r($userid);
         var_dump($userid);
