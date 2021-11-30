@@ -21,6 +21,8 @@ $jsontype = $json->type;
 //var_dump($json);
 //var_dump($jsontype);
 
+file_put_contents("php://stderr", "hello, this is a test!\n");
+
 switch ($jsontype) {
 
   case 'url_verification':
@@ -112,9 +114,10 @@ switch ($jsontype) {
 
         // send the message!
 
-        $attachments = [
+        //changed from array to object
+        $attachments = {
           $message,
-        ];
+        };
 
         $payload = [
           //removed token. will be passed via CURL
@@ -173,6 +176,12 @@ function postMessage($payload) {
 
 
     //}
+
+            $resp = curl_exec($curl);
+        curl_close($curl);
+
+        $userjson = json_decode($resp, false);
+        var_dump($userjson);
 
     $ch_response = json_decode(curl_exec($ch));
     if ($ch_response->ok == FALSE) {
