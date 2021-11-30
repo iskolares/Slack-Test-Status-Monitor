@@ -21,12 +21,6 @@ $jsontype = $json->type;
 //var_dump($json);
 //var_dump($jsontype);
 
-$file = 'file.txt';
-
-//file_put_contents("php://stderr", $json);
-
-file_put_contents($file, $json,FILE_APPEND | LOCK_EX);
-
 switch ($jsontype) {
 
   case 'url_verification':
