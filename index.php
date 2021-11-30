@@ -11,8 +11,7 @@ define('CHANNEL', getenv('CHANNEL'));
 // Grab event data from the request
 
 
-//JSON was not getting received and parsed
-
+//Replaced $_POST['body'] as JSON was not getting received and parsed
 //$input = $_POST['body'];
 $input = file_get_contents('php://input');
 $json = json_decode($input, false);
@@ -82,11 +81,13 @@ switch ($jsontype) {
 
         //$username = $json->event->user->real_name_normalized;
         $username = $userjson->profile->real_name_normalized;
-        var_dump($username);
         $status_text = $userjson->profile->status_text;
-        var_dump($status_text);
         $status_emoji = $userjson->profile->status_emoji;
-        echo($status_emoji);
+
+        //confirmed values received by variables
+        //var_dump($status_text);
+        //var_dump($username);
+        //echo($status_emoji);
 
 
         // Build the message payload
@@ -96,6 +97,7 @@ switch ($jsontype) {
             'text' => $username . " cleared their status.",
           ];
         } else {
+          echo "IAM HERE!";
           $message = [
             "pretext" => $username . " updated their status:",
             "text" => $status_emoji . " *" . $status_text,
@@ -142,7 +144,13 @@ function postMessage($payload) {
 
     if (array_key_exists("filename", $payload)) {
       $callurl = $url . $method;
-      $headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
+
+      // Change CURL headers
+      //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
+      $headers = array(
+        "Accept: application/json",
+        "Authorization: Bearer " .TOKEN
+      );
       curl_setopt($ch, CURLOPT_HEADER, true);
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
       curl_setopt($ch, CURLOPT_POST, 1);
