@@ -77,11 +77,10 @@ switch ($jsontype) {
   
         $resp = curl_exec($curl);
         curl_close($curl);
-        
+
         var_dump($resp);
 
         $userjson = json_decode($resp, false);
-       var_dump($userjson);
 
 
         //$username = $json->event->user->real_name_normalized;
