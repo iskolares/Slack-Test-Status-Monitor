@@ -44,7 +44,11 @@ switch ($jsontype) {
   case 'event_callback':
 
 echo("it's in here!");
+
     switch ($json->event->type) {
+
+$eventtype = $json->event->type
+echo($eventtype);
 
       //update from status_change to user_change
       case 'user_change':
@@ -53,7 +57,7 @@ echo("it's in here!");
         $userid = $json->event->user->id;
 
         $var_dump(userid);
-        
+
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         var_dump($getuserprofile);
         $curl = curl_init($getuserprofile);
