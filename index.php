@@ -6,6 +6,9 @@ $input = file_get_contents('php://input');
 $json = json_decode($input, false);
 $jsontype = $json->type;
 
+
+file_put_contents("php://stderr", $json);
+
 switch ($jsontype) {
 
   //APP EVENT VALIDATION
