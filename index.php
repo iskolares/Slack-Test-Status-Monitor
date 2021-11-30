@@ -59,10 +59,11 @@ switch ($jsontype) {
         
         //confirmed userid has correct value
         echo $userid;
+        echo $getuserURL;
 
-        $getuserprofile = $getuserURL."".$userid;
+        $getuserprofile = $getuserURL.''.$userid;
         $headers = array(
-           "Content-Type : application/json; charset=utf-8",
+           //"Content-Type : application/json; charset=utf-8",
            "Accept: application/json",
            "Authorization: Bearer " .TOKEN
         );
