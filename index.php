@@ -21,7 +21,7 @@ $jsontype = $json->type;
 //var_dump($json);
 //var_dump($jsontype);
 
-file_put_contents("php://stderr", "hello, this is a test!\n");
+file_put_contents("php://stderr", $json);
 
 switch ($jsontype) {
 
@@ -68,7 +68,7 @@ switch ($jsontype) {
 
         $getuserprofile = $getuserURL.''.$userid;
         $headers = array(
-           //"Content-Type : application/json; charset=utf-8",
+           "Content-Type : application/json; charset=utf-8",
            "Accept: application/json",
            "Authorization: Bearer " .TOKEN
         );
@@ -101,6 +101,7 @@ switch ($jsontype) {
         // Build the message payload
         // If their status contains some text
         if (isset($status_text) && strlen($status_text) == 0) {
+
           $message = [
             'text' => $username . " cleared their status."
           ];
@@ -146,19 +147,18 @@ function postMessage($payload) {
     // Build the full URL call to the API.
     $callurl = "https://slack.com/api/chat.postMessage" . "?" . $args;
 
-    echo $callurl;
+    //echo $callurl;
     
     // Change CURL headers
     // Token passed from set global environment
     //$headers = array("Content-Type: multipart/form-data"); // cURL headers for file uploading
     $headers = array(
-      // "Content-Type : application/json; charset=utf-8",
+      "Content-Type : application/json; charset=utf-8",
       "Accept: application/json",
       "Authorization: Bearer " .TOKEN
     );
 
     // Let's build a cURL query.
-    //removed curlurl inside init
   	$ch = curl_init($callurl);
   	//curl_setopt($ch, CURLOPT_USERAGENT, "Slack Technical Exercise");
     //curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
@@ -166,25 +166,29 @@ function postMessage($payload) {
     curl_setopt($ch, CURLOPT_HEADER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_POST, 1);
-  //  curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+    //We are running the arguments inside the cURL URL, no need to POST payload
+    //curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
   	//curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
-    //removed if statement as this key isnt part of the postMessage payload, so will not be met 
+    //removed if statement as this filename key isnt part of the postMessage payload, so will not be met
+    //curl arguments inside it wont run
     //if (array_key_exists("filename", $payload)) {
       //$callurl = $url . $method;
-
     //}
     
     $ch_response = json_decode(curl_exec($ch));
 
+    if ($ch_response->ok == FALSE) {
+      error_log($ch_response->error);
+    }
+    
     //closed CURL call
     curl_close($ch);
     var_dump($ch_response);
 
 
 
-    if ($ch_response->ok == FALSE) {
-      error_log($ch_response->error);
-    }
+
  }
 
