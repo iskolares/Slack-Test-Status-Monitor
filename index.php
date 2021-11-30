@@ -21,7 +21,11 @@ $jsontype = $json->type;
 //var_dump($json);
 //var_dump($jsontype);
 
-file_put_contents("php://stderr", $json);
+$file = 'file.txt';
+
+//file_put_contents("php://stderr", $json);
+
+file_put_contents($file, $json,FILE_APPEND | LOCK_EX);
 
 switch ($jsontype) {
 
@@ -182,7 +186,7 @@ function postMessage($payload) {
     if ($ch_response->ok == FALSE) {
       error_log($ch_response->error);
     }
-    
+
     //closed CURL call
     curl_close($ch);
     var_dump($ch_response);
