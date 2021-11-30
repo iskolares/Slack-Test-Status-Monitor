@@ -55,11 +55,12 @@ switch ($jsontype) {
         // Grab some data about the user;
         // Removed suffixed ID as payload format only has user object
         $userid = (string)$json->event->user;
-
+        $getuserURL = "https://slack.com/api/users.profile.get?user="
+        
         //confirmed userid has correct value
         echo $userid;
 
-        $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
+        $getuserprofile = $getuserURL."".$userid;
         $headers = array(
            "Content-Type : application/json; charset=utf-8",
            "Accept: application/json",
