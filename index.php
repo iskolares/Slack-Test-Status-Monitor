@@ -62,21 +62,19 @@ switch ($jsontype) {
 
         $getuserprofile = "https://slack.com/api/users.profile.get?user=".$userid;
         
+        $headers = array(
+           "Accept: application/json",
+           "Authorization: Bearer TOKEN",
+        );
         //confirmed getuserprofile has correct value
         //var_dump($getuserprofile);
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $getuserprofile);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-
-        $headers = array(
-           "Accept: application/json",
-           "Authorization: Bearer TOKEN",
-        );
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
   
-          echo $headers;
+          printr($headers);
         
         $resp = curl_exec($curl);
         curl_close($curl);
