@@ -47,7 +47,7 @@ echo("it's in here!");
 
     switch ($json->event->type) {
 
-$eventtype = $json->event->type
+$eventtype = $json->event->type;
 echo($eventtype);
 
       //update from status_change to user_change
