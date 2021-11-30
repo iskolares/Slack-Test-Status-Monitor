@@ -59,7 +59,7 @@ switch ($jsontype) {
         //confirmed userid has correct value
         //echo $userid;
 
-        $getuserprofile = "https://slack.com/api/users.profile.get?user=" . $userid;
+        $getuserprofile = "https://slack.com/api/users.profile.get?user={$userid}";
         $headers = array(
            "Content-Type : application/json; charset=utf-8",
            "Accept: application/json",
